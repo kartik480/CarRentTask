@@ -44,7 +44,7 @@
                             <td>{{ $car->name }}</td>
                             <td>{{ $car->type }}</td>
                             <td>{{ $car->location }}</td>
-                            <td>${{ number_format($car->price_per_day, 2) }}</td>
+                            <td>€{{ number_format($car->price_per_day, 2) }}</td>
                             <td>
                                 <span class="badge bg-{{ $car->status == 'approved' ? 'success' : ($car->status == 'pending' ? 'warning' : 'danger') }}">
                                     {{ ucfirst($car->status) }}

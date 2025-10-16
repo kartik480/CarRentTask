@@ -48,7 +48,7 @@ class NewBooking extends Notification implements ShouldQueue
             ->line('Phone: ' . $this->booking->customer_phone)
             ->line('Start Date: ' . $this->booking->start_date->format('M d, Y'))
             ->line('End Date: ' . $this->booking->end_date->format('M d, Y'))
-            ->line('Total Amount: $' . number_format($this->booking->total_amount, 2))
+            ->line('Total Amount: €' . number_format($this->booking->total_amount, 2))
             ->line('Status: ' . ucfirst($this->booking->status))
             ->action('Manage Booking', url('/supplier/bookings'))
             ->line('Please log in to your supplier dashboard to confirm or manage this booking.')

@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-6">
                         <p><strong><i class="fas fa-user"></i> Supplier:</strong> {{ $car->supplier->name }}</p>
-                        <p><strong><i class="fas fa-dollar-sign"></i> Price:</strong> ${{ number_format($car->price_per_day, 2) }}/day</p>
+                        <p><strong><i class="fas fa-euro-sign"></i> Price:</strong> €{{ number_format($car->price_per_day, 2) }}/day</p>
                     </div>
                 </div>
                 

@@ -47,7 +47,7 @@ class BookingConfirmation extends Notification implements ShouldQueue
             ->line('Location: ' . $this->booking->car->location)
             ->line('Start Date: ' . $this->booking->start_date->format('M d, Y'))
             ->line('End Date: ' . $this->booking->end_date->format('M d, Y'))
-            ->line('Total Amount: $' . number_format($this->booking->total_amount, 2))
+            ->line('Total Amount: €' . number_format($this->booking->total_amount, 2))
             ->line('Status: ' . ucfirst($this->booking->status))
             ->action('View Booking Details', url('/cars/' . $this->booking->car->id))
             ->line('Thank you for choosing our car rental service!')

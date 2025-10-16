@@ -71,14 +71,14 @@
                         </div>
                         <div class="col-md-2">
                             <label for="min_price" class="form-label fw-semibold">
-                                <i class="fas fa-dollar-sign me-1"></i>Min Price/Day
+                                <i class="fas fa-euro-sign me-1"></i>Min Price/Day
                             </label>
                             <input type="number" class="form-control" id="min_price" name="min_price" 
                                    value="{{ request('min_price') }}" placeholder="0" min="0">
                         </div>
                         <div class="col-md-2">
                             <label for="max_price" class="form-label fw-semibold">
-                                <i class="fas fa-dollar-sign me-1"></i>Max Price/Day
+                                <i class="fas fa-euro-sign me-1"></i>Max Price/Day
                             </label>
                             <input type="number" class="form-control" id="max_price" name="max_price" 
                                    value="{{ request('max_price') }}" placeholder="1000" min="0">
@@ -139,7 +139,7 @@
                             <div class="mt-auto">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="price-tag">
-                                        ${{ number_format($car->price_per_day, 2) }}/day
+                                        €{{ number_format($car->price_per_day, 2) }}/day
                                     </div>
                                     <a href="{{ route('cars.show', $car) }}" class="btn btn-primary">
                                         <i class="fas fa-eye me-2"></i>View Details

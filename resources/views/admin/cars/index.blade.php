@@ -119,7 +119,7 @@
                                 <i class="fas fa-map-marker-alt me-1"></i>Location
                             </th>
                             <th class="border-0">
-                                <i class="fas fa-dollar-sign me-1"></i>Price/Day
+                                <i class="fas fa-euro-sign me-1"></i>Price/Day
                             </th>
                             <th class="border-0">
                                 <i class="fas fa-user me-1"></i>Supplier
@@ -165,7 +165,7 @@
                                 <i class="fas fa-map-marker-alt me-1 text-primary"></i>{{ $car->location }}
                             </td>
                             <td class="fw-semibold text-success">
-                                ${{ number_format($car->price_per_day, 2) }}
+                                €{{ number_format($car->price_per_day, 2) }}
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">

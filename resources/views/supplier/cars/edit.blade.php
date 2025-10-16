@@ -62,7 +62,7 @@
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label for="price_per_day" class="form-label">Price per Day ($)</label>
+                            <label for="price_per_day" class="form-label">Price per Day (€)</label>
                             <input type="number" step="0.01" min="0" class="form-control @error('price_per_day') is-invalid @enderror" 
                                    id="price_per_day" name="price_per_day" value="{{ old('price_per_day', $car->price_per_day) }}" required>
                             @error('price_per_day')

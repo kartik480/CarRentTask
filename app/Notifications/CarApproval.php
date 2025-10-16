@@ -50,7 +50,7 @@ class CarApproval extends Notification implements ShouldQueue
             ->line('Name: ' . $this->car->name)
             ->line('Type: ' . $this->car->type)
             ->line('Location: ' . $this->car->location)
-            ->line('Price per Day: $' . number_format($this->car->price_per_day, 2));
+            ->line('Price per Day: €' . number_format($this->car->price_per_day, 2));
 
         if ($this->status === 'approved') {
             $message->line('Your car is now live and available for booking!')

@@ -42,7 +42,7 @@
                             </td>
                             <td>{{ $booking->start_date->format('M d, Y') }}</td>
                             <td>{{ $booking->end_date->format('M d, Y') }}</td>
-                            <td>${{ number_format($booking->total_amount, 2) }}</td>
+                            <td>€{{ number_format($booking->total_amount, 2) }}</td>
                             <td>
                                 <span class="badge bg-{{ $booking->status == 'confirmed' ? 'success' : ($booking->status == 'pending' ? 'warning' : ($booking->status == 'cancelled' ? 'danger' : 'info')) }}">
                                     {{ ucfirst($booking->status) }}
