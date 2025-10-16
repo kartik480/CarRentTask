@@ -1,42 +1,60 @@
-# Mini Car Rental System (Laravel)
+# 🚗 Laravel Car Rental System - Admin & Supplier Panel
 
-A comprehensive car rental system with Admin and Supplier panels built with Laravel 12.
+A complete Laravel-based car rental management system with role-based authentication, featuring separate admin and supplier dashboards.
 
-## Features
+## 🌟 Features
 
-### Core Features
-- **Role-based Authentication**: Admin, Supplier, and Customer roles
-- **Admin Panel**: 
-  - Dashboard with statistics
-  - Manage suppliers (CRUD operations)
-  - Approve/reject car listings
-  - View and manage all bookings
-- **Supplier Panel**:
-  - Dashboard with personal statistics
-  - Add/edit/delete car listings
-  - View bookings for their cars
-  - Check availability calendar
-- **Public Car Listings**:
-  - Browse available cars
-  - Search and filter functionality
-  - Car booking system
-  - Availability checking
+### 🔐 Authentication & Roles
+- **Role-based login**: Admin, Supplier, Customer
+- **Secure authentication** with middleware protection
+- **User registration** with validation
+- **Profile management** with settings
 
-### Technical Features
-- **REST API**: Complete API endpoints for car listings and bookings
-- **Form Validation**: Custom Form Request classes
-- **API Resources**: Structured API responses
-- **Middleware**: Role-based access control
-- **Database**: MySQL with proper relationships
-- **File Upload**: Car image uploads
-- **Responsive Design**: Bootstrap-based UI
+### 👨‍💼 Admin Panel
+- **Dashboard** with statistics (total cars, bookings, suppliers)
+- **Supplier Management**: Add/Edit/Delete suppliers
+- **Car Management**: Add/Edit/Delete car listings
+- **Booking Management**: View and manage all bookings
+- **Car Approval System**: Approve/reject cars added by suppliers
 
-## Installation
+### 🚙 Supplier Panel
+- **Dashboard** with supplier-specific statistics
+- **Car Management**: Add/Edit/Delete own car listings
+- **Booking Management**: View bookings for own cars
+- **Availability Calendar**: Set and manage car availability
+- **Booking Status Updates**: Confirm/Cancel/Complete bookings
+
+### 🚗 Public Features
+- **Car Listings**: Browse available cars
+- **Car Details**: View car information and images
+- **Booking System**: Book cars with date selection
+- **Availability Check**: Prevent double bookings
+
+### 📧 Notifications
+- **Email notifications** for booking confirmations
+- **Car approval notifications** for suppliers
+- **New booking alerts** for suppliers
+
+### 🔌 API Features
+- **RESTful API** endpoints for cars and bookings
+- **API Resources** for data transformation
+- **Form Request validation**
+- **Complete API documentation**
+
+## 🚀 Installation
+
+### Prerequisites
+- PHP 8.2+
+- Composer
+- MySQL/MariaDB
+- XAMPP/WAMP/LAMP
+
+### Setup Steps
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd laravel-master
+   git clone https://github.com/kartik480/CarRentTask.git
+   cd CarRentTask
    ```
 
 2. **Install dependencies**
@@ -52,276 +70,171 @@ A comprehensive car rental system with Admin and Supplier panels built with Lara
 
 4. **Database configuration**
    - Update `.env` file with your database credentials
-   - Create a MySQL database named `car_rental_system`
+   - Create a MySQL database
 
-5. **Run migrations and seeders**
+5. **Run migrations**
    ```bash
    php artisan migrate
+   ```
+
+6. **Seed test data**
+   ```bash
    php artisan db:seed
    ```
 
-6. **Create storage link**
-   ```bash
-   php artisan storage:link
-   ```
-
-7. **Start the development server**
+7. **Start the server**
    ```bash
    php artisan serve
    ```
 
-## Default Login Credentials
+## 👥 Test Users
 
-### Admin
-- **Email**: admin@carrental.com
-- **Password**: password
+### Admin User
+- **Email**: `admin@carrental.com`
+- **Password**: `password`
+- **Access**: Full admin panel
 
-### Suppliers
-- **Email**: john@supplier.com
-- **Password**: password
-- **Email**: sarah@supplier.com
-- **Password**: password
-- **Email**: mike@supplier.com
-- **Password**: password
+### Supplier Users
+- **Email**: `john@supplier.com`
+- **Password**: `password`
+- **Access**: Supplier panel
 
-### Customers
-- **Email**: alice@customer.com
-- **Password**: password
-- **Email**: bob@customer.com
-- **Password**: password
+- **Email**: `sarah@supplier.com`
+- **Password**: `password`
+- **Access**: Supplier panel
 
-## API Documentation
+### Customer Users
+- **Email**: `customer@example.com`
+- **Password**: `password`
+- **Access**: Public car listings
 
-### Base URL
-```
-http://localhost:8000/api/v1
-```
+## 🎯 Access URLs
 
-### Public Endpoints
+### Public Access
+- **Home**: `http://127.0.0.1:8000`
+- **Car Listings**: `http://127.0.0.1:8000/cars`
+- **Login**: `http://127.0.0.1:8000/login`
+- **Register**: `http://127.0.0.1:8000/register`
 
-#### Get All Cars
-```http
-GET /cars
-```
+### Admin Panel
+- **Dashboard**: `http://127.0.0.1:8000/admin/dashboard`
+- **Manage Cars**: `http://127.0.0.1:8000/admin/cars`
+- **Manage Suppliers**: `http://127.0.0.1:8000/admin/suppliers`
+- **Manage Bookings**: `http://127.0.0.1:8000/admin/bookings`
 
-**Query Parameters:**
-- `search` - Search by car name, location, or type
-- `type` - Filter by car type (sedan, suv, hatchback, etc.)
-- `location` - Filter by location
-- `min_price` - Minimum price per day
-- `max_price` - Maximum price per day
-- `per_page` - Number of results per page (default: 12)
+### Supplier Panel
+- **Dashboard**: `http://127.0.0.1:8000/supplier/dashboard`
+- **My Cars**: `http://127.0.0.1:8000/supplier/cars`
+- **My Bookings**: `http://127.0.0.1:8000/supplier/bookings`
+- **Availability Calendar**: `http://127.0.0.1:8000/supplier/availability/calendar`
 
-**Response:**
-```json
-{
-  "data": [
-    {
-      "id": 1,
-      "name": "Toyota Camry 2023",
-      "type": "sedan",
-      "location": "New York, NY",
-      "price_per_day": 45.00,
-      "image_url": "http://localhost:8000/storage/cars/image.jpg",
-      "description": "Comfortable and reliable sedan...",
-      "is_available": true,
-      "status": "approved",
-      "supplier": {
-        "id": 2,
-        "name": "John Smith",
-        "email": "john@supplier.com",
-        "phone": "+1-555-0101"
-      },
-      "created_at": "2024-01-01T00:00:00.000000Z",
-      "updated_at": "2024-01-01T00:00:00.000000Z"
-    }
-  ],
-  "links": {...},
-  "meta": {...}
-}
-```
-
-#### Get Single Car
-```http
-GET /cars/{id}
-```
-
-#### Check Car Availability
-```http
-POST /cars/{id}/check-availability
-```
-
-**Request Body:**
-```json
-{
-  "start_date": "2024-01-15",
-  "end_date": "2024-01-18"
-}
-```
-
-**Response:**
-```json
-{
-  "available": true,
-  "days": 4,
-  "total_amount": 180.00,
-  "message": "Car is available for the selected dates."
-}
-```
-
-#### Book a Car
-```http
-POST /cars/{id}/book
-```
-
-**Request Body:**
-```json
-{
-  "start_date": "2024-01-15",
-  "end_date": "2024-01-18",
-  "customer_name": "John Doe",
-  "customer_email": "john@example.com",
-  "customer_phone": "+1-555-0123",
-  "notes": "Airport pickup required"
-}
-```
-
-### Protected Endpoints (Require Authentication)
-
-#### Get User's Bookings
-```http
-GET /bookings
-Authorization: Bearer {token}
-```
-
-#### Get Single Booking
-```http
-GET /bookings/{id}
-Authorization: Bearer {token}
-```
-
-#### Cancel Booking
-```http
-POST /bookings/{id}/cancel
-Authorization: Bearer {token}
-```
-
-## Database Schema
-
-### Users Table
-- `id` - Primary key
-- `name` - User's full name
-- `email` - Unique email address
-- `password` - Hashed password
-- `role` - Enum: admin, supplier, customer
-- `phone` - Phone number (nullable)
-- `address` - Address (nullable)
-- `timestamps`
-
-### Cars Table
-- `id` - Primary key
-- `name` - Car name/model
-- `type` - Car type (sedan, suv, etc.)
-- `location` - Car location
-- `price_per_day` - Daily rental price
-- `image` - Image file path (nullable)
-- `description` - Car description (nullable)
-- `is_available` - Boolean availability flag
-- `supplier_id` - Foreign key to users table
-- `status` - Enum: pending, approved, rejected
-- `timestamps`
-
-### Bookings Table
-- `id` - Primary key
-- `user_id` - Foreign key to users table (nullable for guest bookings)
-- `car_id` - Foreign key to cars table
-- `start_date` - Booking start date
-- `end_date` - Booking end date
-- `total_amount` - Total booking amount
-- `status` - Enum: pending, confirmed, cancelled, completed
-- `notes` - Special requests (nullable)
-- `customer_name` - Customer's name
-- `customer_email` - Customer's email
-- `customer_phone` - Customer's phone
-- `timestamps`
-
-## File Structure
+## 📁 Project Structure
 
 ```
 app/
 ├── Http/
 │   ├── Controllers/
-│   │   ├── Api/
-│   │   │   ├── CarApiController.php
-│   │   │   └── BookingApiController.php
 │   │   ├── AdminController.php
-│   │   ├── AuthController.php
-│   │   ├── BookingController.php
+│   │   ├── SupplierController.php
 │   │   ├── CarController.php
-│   │   └── SupplierController.php
+│   │   ├── ProfileController.php
+│   │   └── Api/
 │   ├── Middleware/
 │   │   ├── AdminMiddleware.php
 │   │   └── SupplierMiddleware.php
 │   ├── Requests/
-│   │   ├── StoreBookingRequest.php
-│   │   ├── StoreCarRequest.php
-│   │   ├── StoreSupplierRequest.php
-│   │   ├── UpdateCarRequest.php
-│   │   └── UpdateSupplierRequest.php
 │   └── Resources/
-│       ├── BookingResource.php
-│       └── CarResource.php
 ├── Models/
-│   ├── Booking.php
+│   ├── User.php
 │   ├── Car.php
-│   └── User.php
+│   └── Booking.php
+└── Notifications/
+
 database/
 ├── migrations/
-│   ├── 0001_01_01_000000_create_users_table.php
-│   ├── 2024_01_01_000001_create_cars_table.php
-│   └── 2024_01_01_000002_create_bookings_table.php
 └── seeders/
-    └── DatabaseSeeder.php
+
 resources/
-└── views/
-    ├── admin/
-    │   └── dashboard.blade.php
-    ├── auth/
-    │   ├── login.blade.php
-    │   └── register.blade.php
-    ├── cars/
-    │   ├── index.blade.php
-    │   └── show.blade.php
-    ├── layouts/
-    │   └── app.blade.php
-    └── supplier/
-        └── dashboard.blade.php
+├── views/
+│   ├── admin/
+│   ├── supplier/
+│   ├── auth/
+│   ├── cars/
+│   └── layouts/
+└── css/
+
 routes/
-├── api.php
-└── web.php
+├── web.php
+└── api.php
 ```
 
-## Usage
+## 🔧 Key Technologies
 
-1. **Admin Panel** (`/admin/dashboard`):
-   - View system statistics
-   - Manage suppliers
-   - Approve/reject car listings
-   - Monitor all bookings
+- **Laravel 11** - PHP Framework
+- **MySQL** - Database
+- **Bootstrap 5** - Frontend Framework
+- **Font Awesome** - Icons
+- **Laravel Notifications** - Email notifications
+- **Eloquent ORM** - Database operations
+- **Blade Templates** - View engine
 
-2. **Supplier Panel** (`/supplier/dashboard`):
-   - View personal statistics
-   - Manage car listings
-   - Handle booking requests
-   - Check car availability
+## 📋 Database Schema
 
-3. **Public Interface** (`/cars`):
-   - Browse available cars
-   - Search and filter cars
-   - Book cars
-   - Check availability
+### Users Table
+- `id`, `name`, `email`, `password`
+- `role` (admin, supplier, customer)
+- `phone`, `address`, `is_active`
+- `notifications`, `email_notifications`
 
-## Contributing
+### Cars Table
+- `id`, `name`, `type`, `location`
+- `price_per_day`, `description`, `image`
+- `seats`, `fuel_type`, `transmission`
+- `is_available`, `status`, `supplier_id`
+
+### Bookings Table
+- `id`, `user_id`, `car_id`, `supplier_id`
+- `start_date`, `end_date`, `total_days`
+- `total_amount`, `total_price`, `status`
+- `customer_name`, `customer_email`, `customer_phone`
+- `notes`
+
+## 🚀 API Endpoints
+
+### Cars API
+- `GET /api/cars` - List all cars
+- `GET /api/cars/{id}` - Get car details
+- `POST /api/cars` - Create car (Admin/Supplier)
+- `PUT /api/cars/{id}` - Update car
+- `DELETE /api/cars/{id}` - Delete car
+
+### Bookings API
+- `GET /api/bookings` - List bookings
+- `POST /api/bookings` - Create booking
+- `PUT /api/bookings/{id}` - Update booking status
+
+## 📚 Documentation
+
+- **API Documentation**: `API_DOCUMENTATION.md`
+- **Panel Access Guide**: `PANEL_ACCESS_GUIDE.md`
+- **Implementation Summary**: `IMPLEMENTATION_SUMMARY.md`
+
+## 🐛 Troubleshooting
+
+### Common Issues
+1. **Database connection errors**: Check `.env` database credentials
+2. **Permission errors**: Ensure storage and cache directories are writable
+3. **Missing columns**: Run `php artisan migrate` to apply all migrations
+
+### Debug Commands
+```bash
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+php artisan cache:clear
+```
+
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -329,6 +242,30 @@ routes/
 4. Push to the branch
 5. Create a Pull Request
 
-## License
+## 📄 License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 👨‍💻 Author
+
+**Kartik**
+- GitHub: [@kartik480](https://github.com/kartik480)
+- Repository: [CarRentTask](https://github.com/kartik480/CarRentTask)
+
+---
+
+## 🎉 Project Status
+
+✅ **Complete Laravel Car Rental System**
+- ✅ Admin Panel with full CRUD operations
+- ✅ Supplier Panel with car and booking management
+- ✅ Public car listings and booking system
+- ✅ Role-based authentication and authorization
+- ✅ Email notifications system
+- ✅ RESTful API with documentation
+- ✅ Form validation and error handling
+- ✅ Responsive Bootstrap UI
+- ✅ Database migrations and seeders
+- ✅ All bonus features implemented
+
+**Ready for production deployment!** 🚀
