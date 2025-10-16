@@ -1,0 +1,52 @@
+# Root .htaccess for Laravel Car Rental System
+# Place this file in the root directory of your Laravel project
+
+# Prevent access to sensitive files
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files composer.json>
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files composer.lock>
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files artisan>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Prevent access to directories
+<DirectoryMatch "/(storage|bootstrap/cache|vendor|database)">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
+
+# Prevent access to PHP files in certain directories
+<DirectoryMatch "/(app|config|database|resources|routes)">
+    <Files "*.php">
+        Order allow,deny
+        Deny from all
+    </Files>
+</DirectoryMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Hide server information
+ServerTokens Prod
+ServerSignature Off
